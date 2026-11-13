@@ -1,0 +1,10 @@
+# Author: Domonick Mack
+# Date: 2026-11-13
+# Description: Docker Compose configuration for containerized verification of HVAC CRM research deliverables.
+
+services:
+  verify:
+    build: .
+    volumes:
+      - .:/app
+    command: python3 scripts/verify_deliverables.py

@@ -1,0 +1,28 @@
+# Author: Domonick Mack
+# Date: 2026-11-13
+# Description: GitHub Actions CI workflow to validate deliverables, conventions, and links on push and pull requests.
+
+name: Deliverables Verification
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Run verification checks
+        run: |
+          python3 scripts/verify_deliverables.py
